@@ -5,7 +5,10 @@ def count(dir, file_endings)
     i = 0
     while i < files.length
       if File.directory?(files[i])
-        lines += count(files[i], file_endings)
+        if files[i] != "addons"
+          p ("entering folder: " + files[i])
+          lines += count(files[i], file_endings)
+        end
       elsif File.file?(files[i])
         lines += count_lines(files[i], file_endings)
       end
@@ -28,4 +31,4 @@ def count_lines(dir, file_endings)
   return lines
 end
 
-p count("C:/Users/teodor.boestad/Documents/GitHub/shuttered_past", [".gdscript", ".gdshader"])
+p count("C:/Users/teodor.boestad/Documents/GitHub/shuttered_past", [".gdscript", ".gdshader", ".gd"])
